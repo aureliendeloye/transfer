@@ -1,39 +1,51 @@
 
-  function transfer (email_expediteur,email_destinataire ,écrivez_votre_message)
+ function verifMail(votre_email)
 {
- 
-	var estRempli=false;
-	for(var i=0 ; i<écrivez_votre_message; i++)//premier paramètre variable
-	{
-		for(var j=0 ; j<7 ; j++)//deuxième paramètre variable
-		{
- 
-			for(var k=0 ; k<25 ; k++)//troisième paramètre variable 
-			{
-				var form = 'var'+k+j+i;
-				if(document.forms['saisie'].elements[form].value!='')
-				{
-					estRempli=true;
-				}
- 
- 
-			}
-		}
-	}
- 
-	if(estRempli==true)
-	{
-		if(document.getElementById(email_destinataire).value == "" )
-		{
-			alert ('Vous devez remplir tous les champs avant de cliquer sur "Envoyer" ');
-			//return false;
-		}
-		else
-		{
-			document.saisie.action = email_expediteur;
-			document.saisie.submit();
-		}
-	}
+   var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
 }
-//et voila le formulaire (enfin juste la balise formulaire et les boutons):
-//Code :	Sélectionner tout - Visualiser dans une fenêtre à part
+
+function verifMail(email_destinataire)
+{
+   var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
+function verifForm(f)
+{
+   
+   var mailOk = verifMail(votre_email);
+   var mailOk = verifMail(email_destinataire);
+   
+   
+   if(mailOk)
+      return true;
+   else
+   {
+      alert("Veuillez remplir correctement tous les champs");
+      return false;
+   }
+   {
+    if(erreur)
+       champ.style.backgroundColor = "#FF0000";
+    else
+       champ.style.backgroundColor = "#FF0000";
+    }
+}
