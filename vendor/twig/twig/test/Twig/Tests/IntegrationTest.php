@@ -170,7 +170,6 @@ class TwigTestExtension extends Twig_Extension
     {
         return array(
             new Twig_Test('multi word', array($this, 'is_multi_word')),
-            new Twig_Test('test_*', array($this, 'dynamic_test')),
         );
     }
 
@@ -210,11 +209,6 @@ class TwigTestExtension extends Twig_Extension
     public function dynamic_foo($foo, $bar, $item)
     {
         return $foo.'/'.$bar.'/'.$item;
-    }
-
-    public function dynamic_test($element, $item)
-    {
-        return $element === $item;
     }
 
     public function escape_something($value)

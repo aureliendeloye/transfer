@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Upload de fichier</title>
+</head>
+<body>
+    <h1>Telecharger vos fichier</h1>
+
+    <form method="POST" action="upload.php" enctype="multipart/form-data">
+
+       <input type="file" name="fichier[]" multiple/><br/>
+       
+       <input type="submit" value="Envoyer les fichiers"/>
+    </form>
+
+    <h1>Formats de fichiers acceptés</h1>
+    <h3>pdf/jpg/jpeg/png/svg/odt/zip/docx</h3>
+    
+    
+</body>
+</html>
