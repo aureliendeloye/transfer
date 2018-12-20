@@ -1,4 +1,4 @@
-<?php 
+  <?php  
 
 require 'vendor/autoload.php';
 
@@ -17,36 +17,22 @@ require_once('models/expediteur.php');
 
 
 switch ($action) {
-    case 'showform':
-        showForm();
+    case 'list':
+        showList();
         break;
-    case 'sendform':
-            sendForm();
-            break;
 }
 
 
 
 
 
-function showForm(){
+function showList(){
     global $twig, $baseurl;
+    $films = liste();
     
     $template = $twig->load('expediteur.html.twig');
-    echo $template->render( array('title'=>'expediteur', 'baseurl' => $baseurl) );
+    echo $template->render( array('title'=>'Tous les Films', 'films' => $films, 'baseurl' => $baseurl) );
+?>
 
-}
 
 
-function sendForm(){
-    global $twig, $baseurl;
-    if (isset($_POST['envoyer'])){
-    $expediteur = expediteur();
-    $destinataire = destinataire();
-    $fichier = fichier();
-    $message = message();
-    
-    $template = $twig->load('expediteur.html.twig');
-    echo $template->render( array('expediteur' => $expediteur, 'destinataire' => $destinataire, 'fichier' => $fichier, 'message' => $message,  'baseurl' => $baseurl) );
-    }
-}
