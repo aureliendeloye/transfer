@@ -32,7 +32,6 @@ function showList(){
     
     $template = $twig->load('expediteur.html.twig');
     echo $template->render( array('title'=>'Tous les Films', 'films' => $films, 'baseurl' => $baseurl) );
+    }
 ?>
-
-
 
