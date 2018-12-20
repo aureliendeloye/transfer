@@ -1,5 +1,5 @@
 <?php 
-
+require 'models/connection_bdd.php';
 require 'vendor/autoload.php';
 
 $loader = new Twig_Loader_Filesystem('view');
