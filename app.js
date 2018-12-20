@@ -4,12 +4,12 @@
    var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,40}0$/;
    if(!regex.test(champ.value))
    {
-      surligne(champ, true);
+      surligne(votre_email, true);
       return false;
    }
    else
    {
-      surligne(champ, false);
+      surligne(votre_email, false);
       return true;
    }
 }
@@ -19,12 +19,12 @@ function verifMail(mail_destinataire)
    var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
    if(!regex.test(champ.value))
    {
-      surligne(champ, true);
+      surligne(mail_destinataire, true);
       return false;
    }
    else
    {
-      surligne(champ, false);
+      surligne(mail_destinataire, false);
       return true;
    }                                                                                                                                    
 }
