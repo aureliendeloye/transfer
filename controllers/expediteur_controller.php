@@ -1,4 +1,6 @@
-  <?php  
+  <?php 
+  use PHPMailer\PHPMailer\PHPMailer;
+  use PHPMailer\PHPMailer\Exception; 
 
 require 'vendor/autoload.php';
 require 'includes/connect_db.php';
@@ -103,6 +105,8 @@ function upload(){
         }
 
         //envoyer le mail
+
+        
         
     }else{
         //Si il y a une erreur

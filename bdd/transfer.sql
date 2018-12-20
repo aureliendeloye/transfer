@@ -2,10 +2,10 @@
 -- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Client :  localhost:3306
--- Généré le :  Jeu 20 Décembre 2018 à 14:47
--- Version du serveur :  10.3.11-MariaDB-1:10.3.11+maria~bionic-log
--- Version de PHP :  7.2.10-0ubuntu0.18.04.1
+-- Client : localhost:3306
+-- Généré le : Jeu 20 Décembre 2018 à 14:47
+-- Version du serveur : 10.3.11-MariaDB-1:10.3.11+maria~bionic-log
+-- Version de PHP : 7.2.10-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `transfer`
+-- Base de données : `transfer`
 --
 
 -- --------------------------------------------------------
@@ -27,12 +27,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `fichier` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(45) DEFAULT NULL,
-  `expediteur_id` int(11) DEFAULT NULL,
-  `taille` int(11) DEFAULT NULL,
-  `type_mine` varchar(45) DEFAULT NULL,
-  `key_file` varchar(255) DEFAULT NULL
+`id` int(11) NOT NULL,
+`nom` varchar(45) DEFAULT NULL,
+`expediteur_id` int(11) DEFAULT NULL,
+`taille` int(11) DEFAULT NULL,
+`type_mine` varchar(45) DEFAULT NULL,
+`key_file` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -60,8 +60,8 @@ INSERT INTO `fichier` (`id`, `nom`, `expediteur_id`, `taille`, `type_mine`, `key
 -- Index pour la table `fichier`
 --
 ALTER TABLE `fichier`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `expediteur_id` (`expediteur_id`);
+ADD PRIMARY KEY (`id`),
+ADD KEY `expediteur_id` (`expediteur_id`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -71,7 +71,7 @@ ALTER TABLE `fichier`
 -- AUTO_INCREMENT pour la table `fichier`
 --
 ALTER TABLE `fichier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- Contraintes pour les tables exportées
 --
@@ -80,7 +80,7 @@ ALTER TABLE `fichier`
 -- Contraintes pour la table `fichier`
 --
 ALTER TABLE `fichier`
-  ADD CONSTRAINT `fichier_ibfk_1` FOREIGN KEY (`expediteur_id`) REFERENCES `expediteur` (`id`);
+ADD CONSTRAINT `fichier_ibfk_1` FOREIGN KEY (`expediteur_id`) REFERENCES `expediteur` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
