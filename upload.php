@@ -18,8 +18,8 @@
         
             if(in_array($file_extension,$extensions_autorisees)){
                 if(move_uploaded_file($file_tmp_name,$file_dest)){
-                    // $req = $db->prepare('INSERT TO files(name, file_url)VALUES(?,?)');
-                    // $req->execute(array($file_name, $file_dest));
+                    //  $req = $db->prepare('INSERT TO files(name, file_url)VALUES(?,?)');
+                    //  $req->execute(array($file_name, $file_dest));
                     echo 'fichier envoyé avec succés';
                 } else{
                     echo "une erreur est survenue lors de l'envoi du fichier";
