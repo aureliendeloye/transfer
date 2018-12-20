@@ -12,12 +12,12 @@
                <div id="email_div "> 
                   <label>Votre email</label> <br>
                   <div id="email_error"></div>
-                  <input id="email" type="email" name="email" class="textInput">
+                  <input id="email_expediteur" type="text" name="email_expediteur" class="textInput">
                </div>
                <div id="email_div "> 
                   <label>Email du Destinataire</label> <br>
                   <div id="email_error"></div>
-                  <input id="email" type="email" name="email" class="textInput">
+                  <input id="email_destinataire" type="text" name="email_destinataire" class="textInput">
                </div>
                <div id="message_div ">  
                   <label>Ecrivez votre message</label> <br>
@@ -30,7 +30,7 @@
                       <i class="far fa-caret-square-down"></i>
                       <span class="js-fileName">Charger vos fichiers</span>
                     </label>
-                     <input type="file" class="input-file" id="filepicker" name="fileList" webkitdirectory multiple />
+                     <input type="file" class="input-file" id="filepicker" name="fileList[]" multiple />
                      <ul id="listing"></ul>
                      
                </div>

@@ -2,23 +2,53 @@
     require'models/connection_bdd.php';
 
 
-    function liste(){
+    function expediteurAddAndReturnLastId( $email, $message ){
         global $basedonne;
 
-        $sql = "SELECT films.titre,films.annee,films.description,films.image_film, films.bande_annonce, 
-        GROUP_CONCAT(DISTINCT genre.type SEPARATOR ', ') AS genre,
-        GROUP_CONCAT(DISTINCT realisateur.realisateur SEPARATOR ', ') AS realisateur,
-        GROUP_CONCAT(DISTINCT acteur.acteur SEPARATOR ', ') AS acteur
-        FROM film_genre 
-        INNER JOIN films ON film_genre.film = films.id
-        INNER JOIN film_realisateur ON film_realisateur.film = films.id
-        INNER JOIN realisateur ON realisateur.id = film_realisateur.realisateur
-        INNER JOIN genre ON genre.id = film_genre.genre
-        INNER JOIN film_acteur ON film_acteur.film = films.id
-        INNER JOIN acteur ON acteur.id = film_acteur.acteur
-        GROUP BY films.titre";
-        
-        $requete = $basedonne->prepare($sql);
-        $requete->execute();    
-        return $requete->fetchAll(PDO::FETCH_ASSOC);    
+        $sql = "INSERT INTO expediteur (id, mail, date_envoi, message ) VALUES (NULL, :email , CURRENT_DATE(), :message );";
+        $response  = $basedonne->prepare( $sql );
+        $response->bindParam(':email', $email, PDO::PARAM_STR);
+        $response->bindParam(':message', $message, PDO::PARAM_STR);
+        $response->execute();
+        return $basedonne->lastInsertId();
     }
+
+
+    function destinataireAddAndReturnLastId( $email ){
+        global $basedonne;
+
+        $sql = "INSERT INTO destinataire (id, mail ) VALUES (NULL, :email );";
+        $response  = $basedonne->prepare( $sql );
+        $response->bindParam(':email', $email, PDO::PARAM_STR);
+        $response->execute();
+        return $basedonne->lastInsertId();
+    }
+
+    function addRelationExpediteurDestinataire( $lastIdExpediteur , $lastIdDestinataire ){
+
+        global $basedonne;
+
+        $sql = "INSERT INTO destinataire_has_expediteur( destinataire_id, expediteur_id ) VALUES(:idDestinataire, :idExpediteur );";
+        $response  = $basedonne->prepare( $sql );
+        $response->bindParam(':idDestinataire', $lastIdDestinataire, PDO::PARAM_INT);
+        $response->bindParam(':idExpediteur',$lastIdExpediteur , PDO::PARAM_INT);
+        $response->execute();
+    }
+
+    function addFile( $lastIdExpediteur , $nomFichier, $taille, $type_mine, $key_file ){
+        var_dump($lastIdExpediteur." , ".$nomFichier.", ".$taille.", ".$type_mine.", ".$key_file);
+        global $basedonne;
+
+        $sql = "INSERT INTO fichier( id, nom, expediteur_id, taille, type_mine, key_file ) VALUES(NULL, :nom, :idExpediteur, :taille, :type_mine, :key_file );";
+        $response  = $basedonne->prepare( $sql );
+        $response->bindParam(':nom', $nomFichier, PDO::PARAM_STR);
+        $response->bindParam(':idExpediteur',$lastIdExpediteur , PDO::PARAM_INT);
+        $response->bindParam(':taille',$taille , PDO::PARAM_INT);
+        $response->bindParam(':type_mine',$type_mine , PDO::PARAM_STR);
+        $response->bindParam(':key_file',$key_file , PDO::PARAM_STR);
+        $response->execute();
+    }
+
+
+
+    

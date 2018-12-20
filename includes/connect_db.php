@@ -1,6 +1,6 @@
 <?php
     try{
-        $db = new PDO('mysql:host=localhost;dbname=transfer_db','root','online@2017');
+        $db = new PDO('mysql:host=localhost;dbname=transfer','root','online@2017');
 
 
     } 
