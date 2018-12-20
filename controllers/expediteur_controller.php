@@ -1,13 +1,50 @@
-  <?php  
+  <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+  
 
-require 'vendor/autoload.php';
-require 'includes/connect_db.php';
+require_once('vendor/autoload.php');
+require_once('includes/connect_db.php');
 require_once('models/expediteur.php');
 
 $loader = new Twig_Loader_Filesystem('view');
 $twig = new Twig_Environment($loader, array(
     'cache' => false,
 ));
+
+
+
+
+$mail = new PHPMailer(true); 
+try {
+    //Server settings
+    $mail->SMTPDebug = 2;
+    $mail->Host = 'smtp.gmail.com'; 
+    $mail->SMTPAuth = true; 
+    $mail->CharSet = 'UTF-8'; 
+    $mail->Encoding = 'base64'; 
+    $mail->Username = 'danidupont8@gmail.com'; 
+    $mail->Password = 'poussin1664'; 
+    $mail->SMTPSecure = 'tls'; 
+    $mail->Port = 587;
+    // //Recipients
+    $mail->setFrom('danidupont8@gmail.com');
+    $mail->addAddress('danidupont8@gmail.com');     // Add a recipient
+                 
+    $mail->addReplyTo('danidupont8@gmail.com');
+    
+
+    // //Content
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = 'Message plateforme de transfert';
+    $mail->Body    = 'lol';
+    
+
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+}
 
 
 
@@ -22,7 +59,7 @@ switch ($action) {
 
 
 function upload(){    
-    
+    global $twig, $email;
     //Initialisation des erreurs
     $error = false;
     $email_expediteur = "";
@@ -103,6 +140,9 @@ function upload(){
         }
 
         //envoyer le mail
+                                     // Passing `true` enables exceptions
+
+        
         
     }else{
         //Si il y a une erreur
